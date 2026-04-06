@@ -190,6 +190,18 @@ Optional query params:
 - `startDate`
 - `endDate`
 
+## Live Deployment
+
+- Base URL: `https://zorvyn-backendtest.onrender.com`
+- Health check: `https://zorvyn-backendtest.onrender.com/health`
+
+### Reviewer Notes
+
+- This API is deployed on Render free tier.
+- The first request after inactivity may take up to 30-60 seconds due to cold start.
+- `GET /` intentionally returns route not found for this API-only service.
+- Use `GET /health` first to confirm uptime, then test auth and protected routes.
+
 ## Local Setup
 
 ### 1. Install dependencies
@@ -342,6 +354,14 @@ Use this checklist before sharing the repository:
 5. Call `GET /health` and verify response is `{ "status": "ok" }`.
 6. Call `POST /api/auth/login` using admin demo credentials and verify token response.
 7. Run `npm test` and confirm tests pass.
+
+For production verification (Render):
+
+1. Open `https://zorvyn-backendtest.onrender.com/health` and verify `{ "status": "ok" }`.
+2. Ensure production `DATABASE_URL` points to Render Postgres (never `localhost`).
+3. Run production migration with `npx prisma migrate deploy`.
+4. Seed data once with `npm run db:seed` if reviewer demo credentials are needed.
+5. Call `POST /api/auth/login` using seeded admin credentials.
 
 ## Submission Notes
 

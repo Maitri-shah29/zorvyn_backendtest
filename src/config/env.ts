@@ -22,7 +22,13 @@ function readJwtSecret(): string {
 export const env = {
   nodeEnv: process.env.NODE_ENV ?? "development",
   port: Number(process.env.PORT ?? 4000),
-  databaseUrl: readEnv("DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/finance_dashboard?schema=public"),
+  databaseUrl:
+    process.env.NODE_ENV === "production"
+      ? readEnv("DATABASE_URL")
+      : readEnv(
+          "DATABASE_URL",
+          "postgresql://postgres:postgres@localhost:5432/finance_dashboard?schema=public",
+        ),
   jwtSecret: readJwtSecret(),
   jwtExpiresIn: process.env.JWT_EXPIRES_IN ?? "1d",
 };
