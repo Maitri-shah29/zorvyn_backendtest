@@ -343,26 +343,6 @@ This section maps the assessment requirements to concrete implementation areas.
 - PostgreSQL persistence is implemented via Prisma ORM.
 - Migrations and seed flow are included for reproducible local setup.
 
-## Quick Verification Checklist
-
-Use this checklist before sharing the repository:
-
-1. Start DB and confirm `DATABASE_URL` in `.env` points to it.
-2. Run `npx prisma migrate dev --name init`.
-3. Run `npm run db:seed`.
-4. Run `npm run dev` and confirm the server logs `Finance backend listening on port 4000`.
-5. Call `GET /health` and verify response is `{ "status": "ok" }`.
-6. Call `POST /api/auth/login` using admin demo credentials and verify token response.
-7. Run `npm test` and confirm tests pass.
-
-For production verification (Render):
-
-1. Open `https://zorvyn-backendtest.onrender.com/health` and verify `{ "status": "ok" }`.
-2. Ensure production `DATABASE_URL` points to Render Postgres (never `localhost`).
-3. Run production migration with `npx prisma migrate deploy`.
-4. Seed data once with `npm run db:seed` if reviewer demo credentials are needed.
-5. Call `POST /api/auth/login` using seeded admin credentials.
-
 ## Submission Notes
 
 This project is designed for assessment readability:
