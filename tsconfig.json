@@ -11,8 +11,8 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "types": ["node", "vitest/globals"],
+    "types": ["node"],
     "ignoreDeprecations": "6.0"
   },
-  "include": ["src", "prisma", "tests", "vitest.config.mts"]
+  "include": ["src", "prisma"]
 }
